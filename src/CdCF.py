@@ -10,7 +10,7 @@
 #############################################################################
 #############################################################################
 
-## Copyright (C) 2006-2009 Cédrick FAURY
+## Copyright (C) 2006-2009 CÃ©drick FAURY
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -40,11 +40,11 @@ import Icones
 ################################################################################
 #     Constantes     #
 ################################################################################
-lstLubrif = [u"huile", u"graisse", u"aucune"]
+lstLubrif = [u"oil", u"grease", u"none"]
 
-pression = {-1 : u"(extérieur)",
+pression = {-1 : u"(outside)",
              0 : u"",
-             1 : u"(interieur)"}
+             1 : u"(inside)"}
 
 ## Structure de l'arbre
 ##---------------------
@@ -89,15 +89,15 @@ pression = {-1 : u"(extérieur)",
 #                  51  : u"Charge Radiale",
 #                  510 : u"gauche",
 #                  511 : u"droite",
-#                  52  : u"Bague tournante par rapport à la Charge Radiale",
+#                  52  : u"Bague tournante par rapport Ã  la Charge Radiale",
 #                  
-#                  6   : u"Etanchéité / Lubrification",
+#                  6   : u"EtanchÃ©itÃ© / Lubrification",
 #                  60  : u"Pression",
 #                  61  : u"Vitesse",
 #                  62  : u"Lubrifiant",
 #                  
-#                  7   : u"Coût",
-#                  70  : u"Coût maximum",
+#                  7   : u"CoÃ»t",
+#                  70  : u"CoÃ»t maximum",
 #                  }
 
 class nbCdCF(wx.Panel):
@@ -108,7 +108,7 @@ class nbCdCF(wx.Panel):
 #         self.AssignImageList(imgList)
         self.MaxSize = None
         self.nb = wx.Notebook(self, -1, style = wx.CLIP_CHILDREN)
-        # Première page du NoteBook
+        # PremiÃ¨re page du NoteBook
         #--------------------------
         self.CdCF_Charges = SchemaCdCF(self.nb, mtgComplet.CdCF, app)
         self.CdCF_Cout    = ZoneCdCFCout(self.nb, mtgComplet.CdCF, app)
@@ -116,9 +116,9 @@ class nbCdCF(wx.Panel):
         
 #        self.ovr = wx.html.HtmlWindow(panel, -1, size=(400, 400))
 
-        self.nb.AddPage(self.CdCF_Charges, u"Efforts sur l'arbre")#, imageId=0)
-        self.nb.AddPage(self.CdCF_Cout, u"Coût admissible")#, imageId=1)
-        self.nb.AddPage(self.CdCF_Etancheite, u"Lubrification - Etanchéité")#, imageId=2)
+        self.nb.AddPage(self.CdCF_Charges, u"Loads on the shaft")#, imageId=0)
+        self.nb.AddPage(self.CdCF_Cout, u"Allowed cost")#, imageId=1)
+        self.nb.AddPage(self.CdCF_Etancheite, u"Lubrication - Sealing")#, imageId=2)
         
         # Set up a wx.html.HtmlWindow on the Overview Notebook page
         # we put it in a panel first because there seems to be a
@@ -157,7 +157,7 @@ class nbCdCF(wx.Panel):
 #    CdCF    #
 #############################################################################           
 class CdCF:
-    "Classe définissant un CdCF"
+    "Classe dÃ©finissant un CdCF"
     
     
     
@@ -165,7 +165,7 @@ class CdCF:
         lstCdCF = ((0,0,            #effort axial (sens 0 , sens 1)
                     0,0,            #effort radial (rlt G , rlt D)
                     "I",            #bague tournante
-                    100,            #coût maximum
+                    100,            #coÃ»t maximum
                     0,))            #sens de montage
         
         self.effortAxial  = { 0  : Indice(),
@@ -242,27 +242,27 @@ class CdCF:
                           },
         # Labels de l'arbre
         #-------------------
-        _treeLabelList = {5   : u"Efforts dans la liaison",
-                          50  : u"Charge Axiale",
-                          500 : u"gauche",
-                          501 : u"droite",
-                          51  : u"Charge Radiale",
-                          510 : u"gauche",
-                          511 : u"droite",
-                          512 : u"intensité",
-                          513 : u"répartition",
-                          52  : u"Bague tournante par rapport à la Charge Radiale",
-                  
-                          6   : u"Etanchéité / Lubrification",
-                          60  : u"Pression",
-                          61  : u"Vitesse",
-                          62  : u"Lubrifiant",
-                  
-                          7   : u"Coût",
-                          70  : u"Coût maximum",
+        _treeLabelList = {5   : u"Loads in the joint",
+                          50  : u"Axial load",
+                          500 : u"left",
+                          501 : u"right",
+                          51  : u"Radial load",
+                          510 : u"left",
+                          511 : u"right",
+                          512 : u"intensity",
+                          513 : u"distribution",
+                          52  : u"Rotating ring versus radial load",
+
+                          6   : u"Sealing / lubrication",
+                          60  : u"Pressure",
+                          61  : u"Speed",
+                          62  : u"Lubricant",
+
+                          7   : u"Cost",
+                          70  : u"Maximum cost",
                           },
                             
-        # Répartition des données dans l'arbre
+        # RÃ©partition des donnÃ©es dans l'arbre
         #--------------------------------------
         _treeData  = {5   : None,
                       50  : None,
@@ -285,7 +285,7 @@ class CdCF:
                       })
     
 #    def creerBranche(self, branche):
-#        """ Crée une branche ElementTree
+#        """ CrÃ©e une branche ElementTree
 #            --> Pour sauvegarde
 #        """
 #        
@@ -309,7 +309,7 @@ class CdCF:
 #
 #    def actualiserDepuisBranche(self, branche):
 #        """ Actualise le CdCF depuis une branche ElementTree
-#            --> après ouverture fichier
+#            --> aprÃ¨s ouverture fichier
 #        """
 #        
 #        def valstr(d, num):
@@ -347,7 +347,7 @@ class CdCF:
 #        self.vitesse = eval(P.attrib["val"])
         
     def MaJ(self):
-#        print "Mise à jour CdCF"
+#        print "Mise Ã  jour CdCF"
         self.effortAxial[0] = self._tree._treeData[500]
         self.effortAxial[1] = self._tree._treeData[501]
         self.effortRadial["G"] = self._tree._treeData[510]
@@ -389,17 +389,19 @@ class CdCF:
 
     ############################################################################
     def nomBagueTournante(self, cod):
-        if cod == "I" : return u"Intérieure"
-        else : return u"Extérieure"
+        if cod == "I":
+            return u"Inner"
+        else:
+            return u"Outer"
 
     #############################################################################
     def __repr__(self):
-        t = u"CdCF :\n"
-        t += u"Charges Axiales  : " + unicode(str(self.effortAxial[0].val)) + unicode(str(self.effortAxial[1].val)) + u"\n"
-        t += u"Charges Radiales : " + unicode(str(self.effortRadial["G"].val)) + unicode(str(self.effortRadial["D"].val)) + u"\n"
-        t += u"Bague tournante  : " + unicode(self.bagueTournante) + u"\n"
-        t += u"Cout  : " + unicode(self.coutMax.val) + u"\n"
-        t += u"Pression  : " + unicode(self.pression.val) + u"\n"
+        t = u"Functional specification:\n"
+        t += u"Axial loads  : " + unicode(str(self.effortAxial[0].val)) + unicode(str(self.effortAxial[1].val)) + u"\n"
+        t += u"Radial loads : " + unicode(str(self.effortRadial["G"].val)) + unicode(str(self.effortRadial["D"].val)) + u"\n"
+        t += u"Rotating ring  : " + unicode(self.bagueTournante) + u"\n"
+        t += u"Cost  : " + unicode(self.coutMax.val) + u"\n"
+        t += u"Pressure  : " + unicode(self.pression.val) + u"\n"
         return t
         
 
@@ -547,7 +549,7 @@ class CdCF:
         
 
 #############################################################################
-#    Indice de critère    #
+#    Indice de critÃ¨re    #
 #############################################################################           
 class Indice:
     def __init__(self, val = 0):
@@ -560,24 +562,24 @@ class Indice:
 #        return unicode(self.val)+"("+self.ch#.encode('cp1252','replace')+")"
 
     def conv(self):
-        ch = {0 : u'très faible',
-              1 : u'assez faible',
-              2 : u'faible',
-              3 : u'moyenne',
-              4 : u'assez élevée',
-              5 : u'élevée',
-              6 : u'forte',
-              7 : u'très forte',
-              8 : u'très forte',
+        ch = {0 : u'very low',
+              1 : u'rather low',
+              2 : u'low',
+              3 : u'average',
+              4 : u'fairly high',
+              5 : u'high',
+              6 : u'strong',
+              7 : u'very strong',
+              8 : u'very strong',
               }
         self.ch = ch[self.val]
         
 
     def convAdm(self):
-        ch = {0 : u'inadapté',
-              1 : u'peu adapté',
-              2 : u'satisfaisant',
-              3 : u'bon',
+        ch = {0 : u'unsuitable',
+              1 : u'poorly suited',
+              2 : u'satisfactory',
+              3 : u'good',
               4 : u'excellent'
               }
         self.ch = ch[self.val]
@@ -631,7 +633,7 @@ class IntVar:
 
 
 ###############################################################################
-# Evenement indiquant que des données ont été modifiées dans le CdCF
+# Evenement indiquant que des donnÃ©es ont Ã©tÃ© modifiÃ©es dans le CdCF
 ###############################################################################
 class CdCFModifiedEvent(wx.PyCommandEvent):
     def __init__(self, evtType, id):
@@ -652,7 +654,7 @@ EVT_CDCF_MODIFIED = wx.PyEventBinder(myEVT_CDCF_MODIFIED,1)
 
    
 ##############################################################################
-#     Canvas Schéma CdCF     #
+#     Canvas SchÃ©ma CdCF     #
 ##############################################################################
 class SchemaCdCF(wx.Panel):
 
@@ -666,7 +668,7 @@ class SchemaCdCF(wx.Panel):
         # Image du schema
         imgSchema = self.BitmapSchema(0)
         
-        #Longueur par défaut des slider
+        #Longueur par dÃ©faut des slider
         self.lgSlider = 60
         
         # Dimension du schema avec les fleches
@@ -689,9 +691,9 @@ class SchemaCdCF(wx.Panel):
         # Sizer principal
         border = wx.GridBagSizer(1,0)
         
-        # Création de la boite contenant le schema et les sliders
+        # CrÃ©ation de la boite contenant le schema et les sliders
         #=========================================================
-        self.boxSchema = wx.StaticBox(self, -1, u"Intensité et répartition",
+        self.boxSchema = wx.StaticBox(self, -1, u"Intensity and distribution",
                                  size = (self.x_Schema, self.y_Schema) )
         self.bsizer1 = wx.StaticBoxSizer(self.boxSchema, wx.VERTICAL)
         
@@ -720,7 +722,7 @@ class SchemaCdCF(wx.Panel):
                                                ancre = s,
                                                maj = "GD",
                                                align = ali[s])
-        # Intensité
+        # IntensitÃ©
         self.sliderCritere[512] = ScaleCdcf(self, deb = 0,
                                             fin = 100,
                                             orient = "V",
@@ -728,7 +730,7 @@ class SchemaCdCF(wx.Panel):
                                             pos = (self.x_Schema/2, 90),
                                             ancre = -1,
                                             maj = "PI",lg = 54)
-        # Répartition
+        # RÃ©partition
         self.sliderCritere[513] = ScaleCdcf(self, deb = -10,
                                             fin = 10,
                                             orient = "H",
@@ -738,18 +740,18 @@ class SchemaCdCF(wx.Panel):
                                             maj = "PI",lg = 54)
         
         
-        # Création de la boite "Bague tournante" ##################################
+        # CrÃ©ation de la boite "Bague tournante" ##################################
         #=========================================================================
-        sb = wx.StaticBox(self, -1, u"Mobilité bagues/charge radiale")
+        sb = wx.StaticBox(self, -1, u"Ring mobility / radial load")
         rsb = wx.StaticBoxSizer(sb, wx.VERTICAL)
-        st = wx.StaticText(self, -1, u"Bague tournante par rapport à la charge Radiale")
+        st = wx.StaticText(self, -1, u"Rotating ring relative to the radial load")
         
         rsb.Add(st)
         gbs = wx.GridBagSizer()
-        radio1 = wx.RadioButton( self, 0, u'Intérieure', style = wx.RB_GROUP )
-        radio2 = wx.RadioButton( self, 1, u'Extérieure' )
-        radio1.SetToolTip(wx.ToolTip(u"à choisir si la bague intérieure est tournante\npar rapport à la charge radiale"))
-        radio2.SetToolTip(wx.ToolTip(u"à choisir si la bague extérieure est tournante\npar rapport à la charge radiale"))
+        radio1 = wx.RadioButton( self, 0, u'Inner', style = wx.RB_GROUP )
+        radio2 = wx.RadioButton( self, 1, u'Outer' )
+        radio1.SetToolTip(wx.ToolTip(u"Choose this if the inner ring rotates\nrelative to the radial load"))
+        radio2.SetToolTip(wx.ToolTip(u"Choose this if the outer ring rotates\nrelative to the radial load"))
         gbs.Add(radio1, (0,0), flag = wx.ALIGN_CENTER_VERTICAL)
         gbs.Add(radio2, (1,0), flag = wx.ALIGN_CENTER_VERTICAL)
         im1 = wx.StaticBitmap(self, -1, Icones.BagueTournInt.GetBitmap())
@@ -798,7 +800,7 @@ class SchemaCdCF(wx.Panel):
 
     #############################################################################            
     def OnEnter(self, event):
-        # le pointeur entre dans la zone du schéma
+        # le pointeur entre dans la zone du schÃ©ma
         if self.app.nbGauche.GetSelection() <> 2:
             self.montrerSliders()
 
@@ -835,8 +837,8 @@ class SchemaCdCF(wx.Panel):
 
     ###########################################################################
     def miseAJourSchema(self, event = None):
-        """ Modification de l'image du schéma
-            et envoi évenement EVT_CDCF_MODIFIED
+        """ Modification de l'image du schÃ©ma
+            et envoi Ã©venement EVT_CDCF_MODIFIED
         """
         self.bmpSchema.SetBitmap(self.BitmapSchema(event.GetId()))
         self.cdcf._tree._treeData[52] = self.cdcf.codeBagueTournante(event.GetId())
@@ -847,9 +849,9 @@ class SchemaCdCF(wx.Panel):
             
     ###########################################################################
     def miseAJourTousCriteres(self,  event = None, fit = False):
-        """ Met à jour les flêches du schéma et les positions des sliders.
-            <event> permet de ne mettre à jour que le slider concerné
-            <fit> assure un affichage correct de toutes les flèches (après ouverture)
+        """ Met Ã  jour les flÃªches du schÃ©ma et les positions des sliders.
+            <event> permet de ne mettre Ã  jour que le slider concernÃ©
+            <fit> assure un affichage correct de toutes les flÃ¨ches (aprÃ¨s ouverture)
         """
         
         if event is not None:
@@ -891,7 +893,7 @@ class SchemaCdCF(wx.Panel):
         ali = {0 : wx.ALIGN_RIGHT,
                1 : wx.ALIGN_LEFT}
         
-        # Flèches 
+        # FlÃ¨ches 
         #========
         for s in [0,1]:
             style = ali[s]|wx.ST_NO_AUTORESIZE
@@ -907,7 +909,7 @@ class SchemaCdCF(wx.Panel):
                                                       orient = "V", sens = s*2-1)
 
         
-        # Image du schéma
+        # Image du schÃ©ma
         #=================
         imgSchema = self.BitmapSchema(0)
         self.bmpSchema = wx.StaticBitmap(self, -1, imgSchema, 
@@ -994,7 +996,7 @@ class SchemaCdCF(wx.Panel):
         return bmp
 
 ##############################################################################
-#     Flèche CdCF     #
+#     FlÃ¨che CdCF     #
 ##############################################################################
 class FlecheCdcfLegend(wx.Panel):
     def __init__(self, parent, indice, id, orient = "H", sens = 1):
@@ -1101,7 +1103,7 @@ class FlecheCdcfLegend(wx.Panel):
         # Bout de la Fleche
         lb, eb = 8, 3
         
-        # longueur de la flèche seule
+        # longueur de la flÃ¨che seule
         lf = long*p+2
         
         # Position du texte    
@@ -1111,7 +1113,7 @@ class FlecheCdcfLegend(wx.Panel):
         # Dimension totale
         l,h = lf + lt + 2 + v*ht, e
         
-        # Points extrémités de la Fleche
+        # Points extrÃ©mitÃ©s de la Fleche
         x1,y1 = 1 + (1-v)*(1-s)*lt, e/2
         x2,y2 = x1 + lf, e/2
         
@@ -1306,14 +1308,14 @@ class ZoneCdCFCout(wx.Panel):
 #        self.scales = []
         
 
-        # Création de la boite contenant le slider "coüt"
+        # CrÃ©ation de la boite contenant le slider "coÃ¼t"
         #=================================================
-        self.controls[70] = Slider_Spin(self, u"Coût indicatif maximum", self.critere, 70,
+        self.controls[70] = Slider_Spin(self, u"Maximum estimated cost", self.critere, 70,
                            (0, self.cdcf.echelleCout), 2, 5)
-        self.controls[70].SetToolTip(u"Réglage du coût indicatif maximum du montage")
+        self.controls[70].SetToolTip(u"Adjust the maximum estimated cost of the assembly")
         
-#        self.boxSchema = wx.StaticBox(self, -1, u"Coût indicatif maximum")
-#        self.boxSchema.SetToolTip(wx.ToolTip(u"Réglage du coût indicatif maximum du montage"))
+#        self.boxSchema = wx.StaticBox(self, -1, u"CoÃ»t indicatif maximum")
+#        self.boxSchema.SetToolTip(wx.ToolTip(u"RÃ©glage du coÃ»t indicatif maximum du montage"))
 #        self.bsizer = wx.StaticBoxSizer(self.boxSchema, wx.VERTICAL)
 #                           
 ##        self.st = wx.StaticText(self, -1, str(self.critere))
@@ -1329,7 +1331,7 @@ class ZoneCdCFCout(wx.Panel):
 #                            style = wx.SL_HORIZONTAL | wx.SL_AUTOTICKS | wx.SL_LABELS | wx.SL_TOP)
 #        self.sl.SetTickFreq(5)
 #        self.sl.SetThumbLength(self.cdcf.echelleCout*2)
-#        self.sl.SetToolTip(wx.ToolTip(u"Faire glisser pour modifier le coût indicatif maximum"))
+#        self.sl.SetToolTip(wx.ToolTip(u"Faire glisser pour modifier le coÃ»t indicatif maximum"))
 #        self.bsizer.Add(self.sl)
         
         border.Add(self.controls[70], (0,0), flag = wx.EXPAND)
@@ -1348,9 +1350,9 @@ class ZoneCdCFCout(wx.Panel):
 
     ###########################################################################
     def miseAJourTousCriteres(self,  event = None, fit = False):
-        """ Met à jour les flêches du schéma et les positions des sliders.
-            <event> permet de ne mettre à jour que le slider concerné
-            <fit> assure un affichage correct de toutes les flèches (après ouverture)
+        """ Met Ã  jour les flÃªches du schÃ©ma et les positions des sliders.
+            <event> permet de ne mettre Ã  jour que le slider concernÃ©
+            <fit> assure un affichage correct de toutes les flÃ¨ches (aprÃ¨s ouverture)
         """
         
         if event is not None:
@@ -1407,7 +1409,7 @@ class ZoneCdCFCout(wx.Panel):
 #    ###############################################################################
 #    def MiseAJour(self, val):
 #        self.critere.set(val)
-##        print "Mise à jour coût :", val, self.cdcf.coutMax  
+##        print "Mise Ã  jour coÃ»t :", val, self.cdcf.coutMax  
 ##        self.st.SetLabel(str(self.cdcf.coutMax))
 #        
 #        
@@ -1465,21 +1467,21 @@ class ZoneCdCFEtancheite(wx.Panel):
         
         # Pression relative
         #-------------------
-        self.controls[60] = Slider_Spin(self, u"Pression relative", self.critere[60], 60,
+        self.controls[60] = Slider_Spin(self, u"Relative pressure", self.critere[60], 60,
                            (0, self.cdcf.echellePression),
                            10, 1)
-        self.controls[60].SetToolTip(u"Réglage de la pression relative intérieur/extérieur")
+        self.controls[60].SetToolTip(u"Adjust the inside/outside relative pressure")
 
         
 #       # Lubrification
         #---------------
-        box = wx.StaticBox(self, -1, u"Type de lubrification", size = self.controls[60].box.GetSize())
+        box = wx.StaticBox(self, -1, u"Lubrication type", size = self.controls[60].box.GetSize())
         bsizer = wx.StaticBoxSizer(box, wx.VERTICAL)
         
         pnl = wx.Panel(self, -1)
         self.controls[62] = wx.Choice(pnl, 62, choices = lstLubrif, size = (100,-1) )
         self.controls[62].SetSelection(self.critere[62].val)
-        self.controls[62].SetToolTip(wx.ToolTip(u"Choix du type de lubrification"))
+        self.controls[62].SetToolTip(wx.ToolTip(u"Select the lubrication type"))
         self.Bind(wx.EVT_CHOICE, self.EvtChoice, self.controls[62])
         
         self.img = wx.StaticBitmap(self, -1, wx.NullBitmap)
@@ -1492,10 +1494,10 @@ class ZoneCdCFEtancheite(wx.Panel):
         
         # Vitesse de rotation
         #---------------------
-        self.controls[61] = Slider_Spin(self, u"Vitesse de rotation", self.critere[61], 61,
+        self.controls[61] = Slider_Spin(self, u"Rotational speed", self.critere[61], 61,
                            (0, self.cdcf.echelleVitesse),
                            10, 1)
-        self.controls[61].SetToolTip(u"Réglage de la vitesse de rotation")
+        self.controls[61].SetToolTip(u"Adjust the rotational speed")
         
         border.Add(self.controls[60], (0,0), flag = wx.EXPAND)
         border.Add(bsizer, (0,1), flag = wx.EXPAND)
@@ -1565,9 +1567,9 @@ class ZoneCdCFEtancheite(wx.Panel):
         
     ###########################################################################
     def miseAJourTousCriteres(self,  event = None, fit = False):
-        """ Met à jour les flêches du schéma et les positions des sliders.
-            <event> permet de ne mettre à jour que le slider concerné
-            <fit> assure un affichage correct de toutes les flèches (après ouverture)
+        """ Met Ã  jour les flÃªches du schÃ©ma et les positions des sliders.
+            <event> permet de ne mettre Ã  jour que le slider concernÃ©
+            <fit> assure un affichage correct de toutes les flÃ¨ches (aprÃ¨s ouverture)
         """
 #        print "Mise a jour CdCFEtancheite"
         
@@ -1609,10 +1611,10 @@ class ZoneCdCFEtancheite(wx.Panel):
         self.Layout()
 
 ##############################################################################
-#     Zone du CdCF Etancheité    #
+#     Zone du CdCF EtancheitÃ©    #
 ##############################################################################
 #class ZoneCdCFEtanch(Frame):
-#    """La Zone affichant CdCF à l'écran"""
+#    """La Zone affichant CdCF Ã  l'Ã©cran"""
 #    def __init__(self, master, root, cdcf = None):
 #        
 #        Frame.__init__(self, master)
@@ -1623,7 +1625,7 @@ class ZoneCdCFEtancheite(wx.Panel):
 #
 #        self.scalesAffichees = False
 #
-#        #  Zone Etancheité   ##################                     
+#        #  Zone EtancheitÃ©   ##################                     
 #        self.zoneEtanch = Frame(self)
 #        self.zoneEtanch.grid(row = 1, column = 1, sticky = SW)
 #
@@ -1769,8 +1771,8 @@ class ZoneCdCFEtancheite(wx.Panel):
 #
 #    ###########################################################################
 #    def modifLubrif(self, event = None, ):
-#        i=listbox.curselection()  ## Récupération de l'index de l'élément sélectionné
-#        return listbox.get(i)  ## On retourne l'élément (un string) sélectionné
+#        i=listbox.curselection()  ## RÃ©cupÃ©ration de l'index de l'Ã©lÃ©ment sÃ©lectionnÃ©
+#        return listbox.get(i)  ## On retourne l'Ã©lÃ©ment (un string) sÃ©lectionnÃ©
 #
 #
 #        

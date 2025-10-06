@@ -10,7 +10,7 @@
 #############################################################################
 #############################################################################
 
-## Copyright (C) 2006-2009 Cédrick FAURY
+## Copyright (C) 2006-2009 CÃ©drick FAURY
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ def charger_styleText():
     StyleText["Message"] = Const.StyleDeTexte(wx.Font(8, wx.DEFAULT, wx.ITALIC, wx.NORMAL, False),wx.BLACK)
     StyleText["Gras"] = Const.StyleDeTexte(wx.Font(8, wx.DEFAULT, wx.NORMAL, wx.BOLD, False),wx.BLACK)
 
-# Les différents styles de texte ...
+# Les diffÃ©rents styles de texte ...
 #Styles = {"Titre"     :     rt.RichTextParagraphStyleDefinition(). \
 #                            SetStyle(wx.RichTextAttr().
 #                                     SetFontSize(20)),
@@ -142,7 +142,7 @@ Styles["Sous titre"].SetAlignment(wx.TEXT_ALIGNMENT_CENTRE)
 class FrameRapport(wx.Frame):
     def __init__(self, parent, options, fichierCourant, analyse, zoneMtg, CdCF, 
                  SchemaPanel, panelEtanch, panelDevis, panelResist):
-        wx.Frame.__init__(self, parent, -1, u"Rapport d'analyse",
+        wx.Frame.__init__(self, parent, -1, u"Analysis report",
                             size=(700, 500))#,
 #                            style = wx.DEFAULT_FRAME_STYLE)
         
@@ -158,7 +158,7 @@ class FrameRapport(wx.Frame):
         self.MakeMenuBar()
         self.MakeToolBar()
         self.CreateStatusBar()
-        self.SetStatusText(u"Rapport d'analyse")
+        self.SetStatusText(u"Analysis report")
         
         self.rtp = RTPrinting(self)
         
@@ -175,7 +175,7 @@ class FrameRapport(wx.Frame):
         # On rempli le rapport
         #
         
-        progBarr = Progression(parent, "Création du rapport ...")
+        progBarr = Progression(parent, "CrÃ©ation du rapport ...")
         progBarr.Show()
         
         self.rtc.AddTitre(fichierCourant)
@@ -482,19 +482,19 @@ class FrameRapport(wx.Frame):
                 self.Bind(wx.EVT_UPDATE_UI, updateUI, item)
             
         fileMenu = wx.Menu()
-        doBind( fileMenu.Append(-1, "&Enregistrer\tCtrl+S", "Enregistrer le rapport"),
+        doBind( fileMenu.Append(-1, "&Save\tCtrl+S", "Save the report"),
                 self.OnFileSave )
-        doBind( fileMenu.Append(-1, "&Enregistrer sous...\tF12", "Enregistrer le rapport"),
+        doBind( fileMenu.Append(-1, "Save &as...\tF12", "Save the report"),
                 self.OnFileSaveAs )
         fileMenu.AppendSeparator()
-        doBind( fileMenu.Append(-1, "&Mise en Page...", u"Règle la mise en page de l'impression"),
+        doBind( fileMenu.Append(-1, "&Page setup...", u"Adjust the print page layout"),
                 self.OnPageSetup )
-        doBind( fileMenu.Append(-1, "&Aperçu avant impression...", u"Affiche un aperçu de ce qui sera imprimé"),
+        doBind( fileMenu.Append(-1, "Print pre&view...", u"Show a preview of the printed document"),
                 self.OnPrintPreview )
-        doBind( fileMenu.Append(-1, "&Imprimer\tCtrl+S", u"Affiche un aperçu de ce qui sera imprimé"),
+        doBind( fileMenu.Append(-1, "&Print\tCtrl+S", u"Open the print dialog"),
                 self.OnDoPrint )
         fileMenu.AppendSeparator()
-        doBind( fileMenu.Append(-1, "&Quitter\tCtrl+Q", "Quitter le visualisateur de rapport"),
+        doBind( fileMenu.Append(-1, "&Exit\tCtrl+Q", "Close the report viewer"),
                 self.OnFileExit )
     
         
@@ -502,21 +502,21 @@ class FrameRapport(wx.Frame):
 
         
         editMenu = wx.Menu()
-        doBind( editMenu.Append(wx.ID_UNDO, u"&Annuler\tCtrl+Z"),
+        doBind( editMenu.Append(wx.ID_UNDO, u"&Undo\tCtrl+Z"),
                 self.ForwardEvent, self.ForwardEvent)
-        doBind( editMenu.Append(wx.ID_REDO, u"&Rétablir\tCtrl+Y"),
+        doBind( editMenu.Append(wx.ID_REDO, u"&Redo\tCtrl+Y"),
                 self.ForwardEvent, self.ForwardEvent )
         editMenu.AppendSeparator()
-        doBind( editMenu.Append(wx.ID_CUT, u"Co&uper\tCtrl+X"),
+        doBind( editMenu.Append(wx.ID_CUT, u"Cu&t\tCtrl+X"),
                 self.ForwardEvent, self.ForwardEvent )
-        doBind( editMenu.Append(wx.ID_COPY, u"&Copier\tCtrl+C"),
+        doBind( editMenu.Append(wx.ID_COPY, u"&Copy\tCtrl+C"),
                 self.ForwardEvent, self.ForwardEvent)
-        doBind( editMenu.Append(wx.ID_PASTE, u"Co&ller\tCtrl+V"),
+        doBind( editMenu.Append(wx.ID_PASTE, u"Pa&ste\tCtrl+V"),
                 self.ForwardEvent, self.ForwardEvent)
-        doBind( editMenu.Append(wx.ID_CLEAR, u"&E&ffacer\tDel"),
+        doBind( editMenu.Append(wx.ID_CLEAR, u"C&lear\tDel"),
                 self.ForwardEvent, self.ForwardEvent)
         editMenu.AppendSeparator()
-        doBind( editMenu.Append(wx.ID_SELECTALL, "Selectionner tout\tCtrl+A"),
+        doBind( editMenu.Append(wx.ID_SELECTALL, "Select all\tCtrl+A"),
                 self.ForwardEvent, self.ForwardEvent )
         
         #doBind( editMenu.AppendSeparator(),  )
@@ -524,37 +524,38 @@ class FrameRapport(wx.Frame):
         #doBind( editMenu.Append(-1, "&Replace...\tCtrl+R"),  )
 
         formatMenu = wx.Menu()
-        doBind( formatMenu.AppendCheckItem(-1, u"&Gras\tCtrl+B"),
+        doBind( formatMenu.AppendCheckItem(-1, u"&Bold\tCtrl+B"),
                 self.OnBold, self.OnUpdateBold)
         doBind( formatMenu.AppendCheckItem(-1, u"&Italic\tCtrl+I"),
                 self.OnItalic, self.OnUpdateItalic)
-        doBind( formatMenu.AppendCheckItem(-1, u"&Souligné\tCtrl+U"),
+        doBind( formatMenu.AppendCheckItem(-1, u"&Underline\tCtrl+U"),
                 self.OnUnderline, self.OnUpdateUnderline)
         formatMenu.AppendSeparator()
-        doBind( formatMenu.AppendCheckItem(-1, u"Aligner à &gauche"),
+        doBind( formatMenu.AppendCheckItem(-1, u"Align &left"),
                 self.OnAlignLeft, self.OnUpdateAlignLeft)
-        doBind( formatMenu.AppendCheckItem(-1, u"&Centrer"),
+        doBind( formatMenu.AppendCheckItem(-1, u"&Center"),
                 self.OnAlignCenter, self.OnUpdateAlignCenter)
-        doBind( formatMenu.AppendCheckItem(-1, u"Aligner à &droite"),
+        doBind( formatMenu.AppendCheckItem(-1, u"Align &right"),
                 self.OnAlignRight, self.OnUpdateAlignRight)
         formatMenu.AppendSeparator()
-        doBind( formatMenu.Append(-1, u"&Indenter"), self.OnIndentMore)
-        doBind( formatMenu.Append(-1, u"&Desindenter"), self.OnIndentLess)
+        doBind( formatMenu.Append(-1, u"&Increase indent"), self.OnIndentMore)
+        doBind( formatMenu.Append(-1, u"&Decrease indent"), self.OnIndentLess)
         formatMenu.AppendSeparator()
-        doBind( formatMenu.Append(-1, u"&Augmenter l'espace entre paragraphe"), self.OnParagraphSpacingMore)
-        doBind( formatMenu.Append(-1, u"&Diminuer l'espace entre paragraphe"), self.OnParagraphSpacingLess)
+        doBind( formatMenu.Append(-1, u"Increase paragraph spacing"), self.OnParagraphSpacingMore)
+        doBind( formatMenu.Append(-1, u"Decrease paragraph spacing"), self.OnParagraphSpacingLess)
         formatMenu.AppendSeparator()
-        doBind( formatMenu.Append(-1, u"Interligne &simple"), self.OnLineSpacingSingle)
-        doBind( formatMenu.Append(-1, u"Interligne &x1.5"), self.OnLineSpacingHalf)
-        doBind( formatMenu.Append(-1, u"Interligne &double"), self.OnLineSpacingDouble)
+        doBind( formatMenu.Append(-1, u"&Single line spacing"), self.OnLineSpacingSingle)
+        doBind( formatMenu.Append(-1, u"Line spacing x1.5"), self.OnLineSpacingHalf)
+        doBind( formatMenu.Append(-1, u"&Double line spacing"), self.OnLineSpacingDouble)
         formatMenu.AppendSeparator()
-        doBind( formatMenu.Append(-1, u"&Police..."), self.OnFont)
+        doBind( formatMenu.Append(-1, u"&Font..."), self.OnFont)
         
 
 
         mb = wx.MenuBar()
-        mb.Append(fileMenu, "&Fichier")
-        mb.Append(editMenu, "&Edition")
+        mb.Append(fileMenu, "&File")
+        mb.Append(editMenu, "&Edit")
+        mb.Append(formatMenu, "&Format")
         self.SetMenuBar(mb)
 
     def MakeToolBar(self):
@@ -565,50 +566,50 @@ class FrameRapport(wx.Frame):
         
         tbar = self.CreateToolBar()
         doBind( tbar.AddTool(-1, _rt_save.GetBitmap(),
-                            shortHelpString=u"Enregistrer"), self.OnFileSave)
+                            shortHelpString=u"Save"), self.OnFileSave)
         bmp = Icones.getBout_ImprimerBitmap().ConvertToImage().Rescale(17,17,wx.IMAGE_QUALITY_HIGH).ConvertToBitmap()
         doBind( tbar.AddTool(-1, bmp,
-                            shortHelpString=u"Imprimer le rapport"), self.OnDoPrint)
+                            shortHelpString=u"Print the report"), self.OnDoPrint)
         
         tbar.AddSeparator()
         doBind( tbar.AddTool(wx.ID_UNDO, _rt_undo.GetBitmap(),
-                            shortHelpString=u"Annuler"), self.ForwardEvent, self.ForwardEvent)
+                            shortHelpString=u"Undo"), self.ForwardEvent, self.ForwardEvent)
         doBind( tbar.AddTool(wx.ID_REDO, _rt_redo.GetBitmap(),
-                            shortHelpString=u"Rétablir"), self.ForwardEvent, self.ForwardEvent)
+                            shortHelpString=u"Redo"), self.ForwardEvent, self.ForwardEvent)
         
         tbar.AddSeparator()
         doBind( tbar.AddTool(wx.ID_CUT, _rt_cut.GetBitmap(),
-                            shortHelpString=u"Couper dans le presse-papier"), self.ForwardEvent, self.ForwardEvent)
+                            shortHelpString=u"Cut to clipboard"), self.ForwardEvent, self.ForwardEvent)
         doBind( tbar.AddTool(wx.ID_COPY, _rt_copy.GetBitmap(),
-                            shortHelpString=u"Copier dans le presse-papier"), self.ForwardEvent, self.ForwardEvent)
+                            shortHelpString=u"Copy to clipboard"), self.ForwardEvent, self.ForwardEvent)
         doBind( tbar.AddTool(wx.ID_PASTE, _rt_paste.GetBitmap(),
-                            shortHelpString=u"Coller depuis le presse-papier"), self.ForwardEvent, self.ForwardEvent)
+                            shortHelpString=u"Paste from clipboard"), self.ForwardEvent, self.ForwardEvent)
         
         tbar.AddSeparator()
         doBind( tbar.AddTool(-1, _rt_bold.GetBitmap(), isToggle=True,
-                            shortHelpString=u"Gras"), self.OnBold, self.OnUpdateBold)
+                            shortHelpString=u"Bold"), self.OnBold, self.OnUpdateBold)
         doBind( tbar.AddTool(-1, _rt_italic.GetBitmap(), isToggle=True,
                             shortHelpString=u"Italic"), self.OnItalic, self.OnUpdateItalic)
         doBind( tbar.AddTool(-1, _rt_underline.GetBitmap(), isToggle=True,
-                            shortHelpString=u"Souligné"), self.OnUnderline, self.OnUpdateUnderline)
+                            shortHelpString=u"Underline"), self.OnUnderline, self.OnUpdateUnderline)
         tbar.AddSeparator()
         doBind( tbar.AddTool(-1, _rt_alignleft.GetBitmap(), isToggle=True,
-                            shortHelpString=u"Aligner à gauche"), self.OnAlignLeft, self.OnUpdateAlignLeft)
+                            shortHelpString=u"Align left"), self.OnAlignLeft, self.OnUpdateAlignLeft)
         doBind( tbar.AddTool(-1, _rt_centre.GetBitmap(), isToggle=True,
-                            shortHelpString=u"Centrer"), self.OnAlignCenter, self.OnUpdateAlignCenter)
+                            shortHelpString=u"Center"), self.OnAlignCenter, self.OnUpdateAlignCenter)
         doBind( tbar.AddTool(-1, _rt_alignright.GetBitmap(), isToggle=True,
-                            shortHelpString=u"Aligner à droite"), self.OnAlignRight, self.OnUpdateAlignRight)
+                            shortHelpString=u"Align right"), self.OnAlignRight, self.OnUpdateAlignRight)
         
         tbar.AddSeparator()
         doBind( tbar.AddTool(-1, _rt_indentless.GetBitmap(),
-                            shortHelpString="Indenter"), self.OnIndentLess)
+                            shortHelpString="Decrease indent"), self.OnIndentLess)
         doBind( tbar.AddTool(-1, _rt_indentmore.GetBitmap(),
-                            shortHelpString="Desindenter"), self.OnIndentMore)
+                            shortHelpString="Increase indent"), self.OnIndentMore)
         tbar.AddSeparator()
         doBind( tbar.AddTool(-1, _rt_font.GetBitmap(),
-                            shortHelpString="Police"), self.OnFont)
+                            shortHelpString="Font"), self.OnFont)
         doBind( tbar.AddTool(-1, _rt_colour.GetBitmap(),
-                            shortHelpString="Couleur de police"), self.OnColour)
+                            shortHelpString="Font colour"), self.OnColour)
 
         tbar.AddSeparator()
         tbar.AddControl(
@@ -763,14 +764,14 @@ class RapportRTF(rt.RichTextCtrl):
     
     ######################################################################################################
     def AddTitre(self, fichierCourant):
-        self.AddParagraphStyled(u"Rapport d'analyse", "Titre")
+        self.AddParagraphStyled(u"Analysis report", "Titre")
         self.AddParagraphStyled(os.path.basename(os.path.splitext(fichierCourant)[0]), "Sous titre")
         self.AddParagraphStyled(wx.GetApp().auteur, "Sous titre")
         
         
     ######################################################################################################
     def AddMontage(self, zoneMtg):
-        self.AddParagraphStyled(u"Montage :", "Titre 1")
+        self.AddParagraphStyled(u"Assembly:", "Titre 1")
         self.AddImage(self.GetImageMontage(zoneMtg))
         self.AppendText("\n")
         
@@ -779,28 +780,28 @@ class RapportRTF(rt.RichTextCtrl):
     # CdCF
     ######################################################################################################
     def AddCdCFCharges(self, CdCF, SchemaPanel):
-        self.AddParagraphStyled(u"Efforts sur l'arbre :", "Titre 2")
+        self.AddParagraphStyled(u"Loads on the shaft:", "Titre 2")
         bmp = SchemaPanel.BitmapSchemaAvecFleches(CdCF.bagueTournante)
         self.AddImage(bmp.ConvertToImage())
         
     def AddCdCFEtanchStat(self, CdCF):
-        self.AddParagraphStyled(u"Indice de Pression : "+ str(CdCF.pression.get()), "MessSens")
+        self.AddParagraphStyled(u"Pressure index: "+ str(CdCF.pression.get()), "MessSens")
         
     def AddCdCFEtanchDyn(self, CdCF):
-        self.AddParagraphStyled(u"Indice de Vitesse : "+ str(CdCF.vitesse.get()), "MessSens")
+        self.AddParagraphStyled(u"Speed index: "+ str(CdCF.vitesse.get()), "MessSens")
     
     def AddCdCFEtanchLub(self, CdCF):
-        self.AddParagraphStyled(u"Lubrifiant : "+ CdCF.lubrifiant.getCh(),"MessSens")
+        self.AddParagraphStyled(u"Lubricant: "+ CdCF.lubrifiant.getCh(),"MessSens")
         
     def AddCdCFCoutMax(self, CdCF):
-        self.AddParagraphStyled(u"Coût Maximum admissible : "+str(CdCF.coutMax),"MessSens")
+        self.AddParagraphStyled(u"Maximum allowed cost: "+str(CdCF.coutMax),"MessSens")
         self.AppendText("\n")
         
     def AddTitreCdCF(self):
-        self.AddParagraphStyled(u"Cahier des Charges Fonctionnel (CdCF) :", "Titre 1")
+        self.AddParagraphStyled(u"Functional specification (CdCF):", "Titre 1")
         
     def AddCdCFEtanch(self, CdCF):
-        self.AddParagraphStyled(u"Lubrification - Etanchéité :", "Titre 2")
+        self.AddParagraphStyled(u"Lubrication - Sealing:", "Titre 2")
         self.AddCdCFEtanchStat(CdCF)
         self.AddCdCFEtanchDyn(CdCF)
         self.AddCdCFEtanchLub(CdCF)
@@ -810,17 +811,17 @@ class RapportRTF(rt.RichTextCtrl):
     # Analyse   
     ######################################################################################################
     def AddTitreAnImmob(self):
-        self.AddParagraphStyled(u"Structure du Montage :", "Titre 1")
+        self.AddParagraphStyled(u"Assembly structure:", "Titre 1")
         
     def AddAnImmob(self, analyse, zoneMtg):
-        self.AddParagraphStyled(u"Mise en position axiale :", "Titre 2")
+        self.AddParagraphStyled(u"Axial positioning:", "Titre 2")
         
         # Message principal
         self.AddParagraphStyled(analyse.messageImmobilisation.mess, "Message", analyse.messageImmobilisation.coul)
         self.AppendText("\n")
         
         # Message par sens
-        for s in [1,0]: # différents sens ...
+        for s in [1,0]: # diffÃ©rents sens ...
             self.BeginStyle(Styles["MessSens"])
             self.BeginTextColour(Couleur[analyse.resultatImmobilisation[s][0].coul])
             mess = self.AppendText(analyse.resultatImmobilisation[s][0].mess)
@@ -828,7 +829,7 @@ class RapportRTF(rt.RichTextCtrl):
         self.AppendText("\n")
         
         # Image par sens
-        for s in [1,0]: # différents sens ...
+        for s in [1,0]: # diffÃ©rents sens ...
             if analyse.resultatImmobilisation[s][0].clef == 'ArretArbreSens':
                 img = self.GetImageArret(s, analyse, zoneMtg)
             elif analyse.resultatImmobilisation[s][0].clef == 'ImmobCorrect':
@@ -838,7 +839,7 @@ class RapportRTF(rt.RichTextCtrl):
         self.AppendText("\n")
             
     def AddAnStruc(self, analyse, zoneMtg):
-        titre = self.AddParagraph(u"Schéma de Structure :")
+        titre = self.AddParagraph(u"Structure diagram:")
         self.SetStyle(titre, Styles["Titre 2"])
         img = analyse.schemaStructure.bitmap().ConvertToImage()
         self.AddImage(img)
@@ -846,17 +847,17 @@ class RapportRTF(rt.RichTextCtrl):
         
     ######################################################################################################
     def AddTitreAnCharg(self):
-        self.AddParagraphStyled(u"Résistance aux charges :", "Titre 1")
+        self.AddParagraphStyled(u"Resistance to loads:", "Titre 1")
     
     def AddAnResistMtg(self, analyse, zoneMtg):
-        self.AddParagraphStyled(u"Résistance axiale du montage :", "Titre 2")
+        self.AddParagraphStyled(u"Assembly axial resistance:", "Titre 2")
               
         # Message principal
         self.AddParagraphStyled(analyse.messageResistanceAxiale.mess, "Message", analyse.messageResistanceAxiale.coul)
         self.AppendText("\n")
         
         # Message par sens
-        for s in [1,0]: # différents sens ...
+        for s in [1,0]: # diffÃ©rents sens ...
             self.BeginStyle(Styles["MessSens"])
             self.BeginTextColour(Couleur[analyse.resultatEffortAxialMtg[s][0].coul])
             mess = self.AppendText(analyse.resultatEffortAxialMtg[s][0].mess)
@@ -864,7 +865,7 @@ class RapportRTF(rt.RichTextCtrl):
         self.AppendText("\n")
 
         # Image par sens
-        for s in [1,0]: # différents sens ...
+        for s in [1,0]: # diffÃ©rents sens ...
             if analyse.resultatEffortAxialMtg[s][0].clef == 'ElemResistPas':
                 img = self.GetImageChaineSurbrill(s, analyse, zoneMtg)
             elif analyse.resultatEffortAxialMtg[s][0].clef == 'ChargeAxOk':
@@ -877,13 +878,13 @@ class RapportRTF(rt.RichTextCtrl):
     
     
     def AddAnResistRlt(self, analyse, zoneMtg, panelResist):
-        self.AddParagraphStyled(u"Résistance des roulements :", "Titre 2")
+        self.AddParagraphStyled(u"Bearing resistance:", "Titre 2")
         
         # Message principal
         self.AddParagraphStyled(analyse.messageResistanceAxiale.mess, "Message", analyse.messageResistanceAxiale.coul)
         self.AppendText("\n")
         
-        # Schéma de structure
+        # SchÃ©ma de structure
         img = analyse.imageSchemaCharges.ConvertToImage()
         self.AddImage(img)
         
@@ -895,27 +896,27 @@ class RapportRTF(rt.RichTextCtrl):
         
     ######################################################################################################
     def AddTitreAnMontab(self, analyse):
-        self.AddParagraphStyled(u"Montabilité :", "Titre 1")
+        self.AddParagraphStyled(u"Assemblability:", "Titre 1")
         
         self.AddParagraphStyled(analyse.resultatMontabilite.mess, "Message", analyse.resultatMontabilite.coul)
         
     def AddAnMontabEns(self, analyse, zoneMtg):
-        if analyse.cdcf.bagueTournante == "I": ens = u"""arbre"""
-        else: ens = u"""alésage"""
-        self.AddParagraphStyled(u"Montabilité de l'ensemble "+ens+" :", "Titre 2")
+        if analyse.cdcf.bagueTournante == "I": ens = u"""shaft"""
+        else: ens = u"""housing"""
+        self.AddParagraphStyled(u"Assemblability of the "+ens+" assembly:", "Titre 2")
         self.AppendText("")
         
-        # Images pour "Montabilité"
+        # Images pour "MontabilitÃ©"
         imagMontabiliteEns = self.GetImagesDemontageEns(analyse, zoneMtg)
         for img in imagMontabiliteEns:
             self.WriteImage(img)
             self.WriteText("\t")
         
     def AddAnMontabRlt(self, analyse, zoneMtg):
-        self.AddParagraphStyled(u"Montabilité des Roulements :", "Titre 2")
+        self.AddParagraphStyled(u"Bearing assemblability:", "Titre 2")
         self.AppendText("")
         
-        # Images pour "Montabilité"
+        # Images pour "MontabilitÃ©"
         imagMontabiliteRlt = self.GetImagesDemontageRlt(analyse, zoneMtg)
         for img in imagMontabiliteRlt:
             self.WriteImage(img)
@@ -924,12 +925,12 @@ class RapportRTF(rt.RichTextCtrl):
             
     ######################################################################################################
     def AddAnEtanch(self, analyse, panelEtanch, CdCF):
-        self.AddParagraphStyled(u"Etanchéité :", "Titre 1")
+        self.AddParagraphStyled(u"Sealing:", "Titre 1")
         
         #
-        # Etanchéité statique
+        # Static sealing
         #
-        self.AddParagraphStyled(u"Etanchéité Statique :", "Titre 2")
+        self.AddParagraphStyled(u"Static sealing:", "Titre 2")
         
         # CdCF
         self.AddCdCFEtanchStat(CdCF)
@@ -938,7 +939,7 @@ class RapportRTF(rt.RichTextCtrl):
         message = analyse.resultatEtancheite["SB"]
         self.AddParagraphStyled(message.mess, "Message", message.coul)
         
-        # Détails 
+        # DÃ©tails 
         if "SB+" in analyse.resultatEtancheite.keys():
             for mess in analyse.resultatEtancheite["SB+"]:
                 self.AddParagraphStyled(mess.mess, "MessSens", mess.coul)
@@ -947,10 +948,10 @@ class RapportRTF(rt.RichTextCtrl):
         self.AddGrid(panelEtanch.tableStat)
         
         #
-        # Etanchéité Dynamique
+        # Dynamic sealing
         #
         if "DB" in analyse.resultatEtancheite:
-            self.AddParagraphStyled(u"Etanchéité Dynamique :", "Titre 2")
+            self.AddParagraphStyled(u"Dynamic sealing:", "Titre 2")
             
             # CdCF
             self.AddCdCFEtanchDyn(CdCF)
@@ -966,9 +967,9 @@ class RapportRTF(rt.RichTextCtrl):
             self.AddGrid(panelEtanch.tableDyn)
         
         #
-        # Compatibilité lubrifiant
+        # Lubricant compatibility
         #
-        self.AddParagraphStyled(u"Compatibilité lubrifiant :", "Titre 2")
+        self.AddParagraphStyled(u"Lubricant compatibility:", "Titre 2")
         
         # CdCF
         self.AddCdCFEtanchLub(CdCF)
@@ -982,7 +983,7 @@ class RapportRTF(rt.RichTextCtrl):
                     
     ######################################################################################################
     def AddAnCout(self, analyse, panelDevis, CdCF):
-        self.AddParagraphStyled(u"Devis (coût indicatif) :", "Titre 1")
+        self.AddParagraphStyled(u"Cost estimate:", "Titre 1")
         
         # CdCF
         self.AddCdCFCoutMax(CdCF)
@@ -999,7 +1000,7 @@ class RapportRTF(rt.RichTextCtrl):
         def SsRc(s):
             return s.replace("\n", " ")
 
-        # Définition des tabs
+        # DÃ©finition des tabs
         coef = 5
         tabs = [max(coef*grid.GetRowLabelSize(), 30)]
         for c in range(grid.GetNumberCols()):
@@ -1226,10 +1227,10 @@ class RTPrinting(rt.RichTextPrinting):
 ##
 ##
 ##def f_lance_pdf( z_fichier_in, z_directory, z_fichier_out):
-##    """ crée un fichier PDF sur base d'un fichier imprimable (XLS,DOC,...)
+##    """ crÃ©e un fichier PDF sur base d'un fichier imprimable (XLS,DOC,...)
 ##    arguments :
 ##    le nom complet du fichier IN
-##    le répertoire
+##    le rÃ©pertoire
 ##    le nom du fichier de sortie (sans .pdf car implicite)
 ##
 ##    """
@@ -1241,7 +1242,7 @@ class RTPrinting(rt.RichTextPrinting):
 ##
 ##    pdfcreator1.cStart("/NoProcessingAtStartup")
 ##
-##    ## sauver imprimante par défaut
+##    ## sauver imprimante par dÃ©faut
 ##
 ##    imprimante_defaut = pdfcreator1.cDefaultPrinter
 ##
@@ -1263,7 +1264,7 @@ class RTPrinting(rt.RichTextPrinting):
 ##    print "imprimante par defaut : " , imprimante_defaut
 ##    print "redirection imprimante : " , pdfcreator1.cDefaultPrinter
 ##    print "existence du fichier ",z_fichier_in,") ", os.path.exists( z_fichier_in )
-##    print "existence du répertoire ",z_directory ,") ", os.path.exists( z_directory )
+##    print "existence du rÃ©pertoire ",z_directory ,") ", os.path.exists( z_directory )
 ##    print "use auto save : ", pdfcreator1.cOption("UseAutosave")
 ##    print "use auto save directory " , pdfcreator1.cOption("AutosaveDirectory")
 ##
@@ -1297,8 +1298,8 @@ class RTPrinting(rt.RichTextPrinting):
 ##
 ##
 ##
-##    ## print "restaurer l'imprimante par défaut"
-##    print "imprimante redéfinie : ", imprimante_defaut
+##    ## print "restaurer l'imprimante par dÃ©faut"
+##    print "imprimante redÃ©finie : ", imprimante_defaut
 ##    pdfcreator1.cDefaultPrinter = imprimante_defaut
 ##    pdfcreator1.cClearCache
 ##    ## terminer proprement en fermant le lien COM et en effacant les objets.

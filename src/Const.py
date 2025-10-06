@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: ISO-8859-1 -*-
+# -*- coding: utf-8 -*-
 
 ##This file is part of PyVot
 #############################################################################
@@ -10,7 +10,7 @@
 #############################################################################
 #############################################################################
 
-## Copyright (C) 2006 Cédrick FAURY
+## Copyright (C) 2006 CÃƒÂ©drick FAURY
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -77,82 +77,82 @@ Font_OngletActif = [("Helvetica, ", "8",  "bold", "roman")              ,"black"
 ##############################################################################
 #     Message d'erreur d'analyse     #
 ##############################################################################
-arg2str = {0    : ("sens",u"droite"),
-           1    : ("sens",u"gauche"),
-           "D"  : ("cote",u"droit"),
-           "G"  : ("cote",u"gauche"),
+arg2str = {0    : ("sens",u"right"),
+           1    : ("sens",u"left"),
+           "D"  : ("cote",u"right"),
+           "G"  : ("cote",u"left"),
            "GD" : ("cote",u""),
            "DG" : ("cote",u""),
-           "Al" : ("radi",u"alésage"),
-           "Ar" : ("radi",u"arbre"),
-           "EAl" : ("etanch",u"statique"),
-           "EAr" : ("etanch",u"dynamique")
+           "Al" : ("radi",u"bore"),
+           "Ar" : ("radi",u"shaft"),
+           "EAl" : ("etanch",u"static"),
+           "EAr" : ("etanch",u"dynamic")
            }
 
 
 messagesAnalyse = { ''               : ('','black'),
-                    'MontOk'         : (u"Montage correct","vert"),
+                    'MontOk'         : (u"Assembly is correct","green"),
 
-                    # Remarques générales
-                    'ManqueRlt'      : (u"Il manque un roulement pour faire une liaison pivot !", "rouge"),
-                    'RltPasMaintenu' : (u"Une des bagues du roulement %(cote)s n'est pas maintenue.", "rouge"),
-                    'RltPasMaintenus': (u"Une des bagues des roulements n'est pas maintenue.", "rouge"),
-                    'RltsImcomp'     : (u"Roulements incompatibles.", "rouge"),
-                    'OrientIncorr'   : (u"L'orientation des roulements à contact oblique est incorrecte.", "rouge"),
-                    'RltPasArrete'   : (u"Le roulement %(cote)s devrait être arrêté des deux cotés sur l'%(radi)s.", "bleu"),
-                    'RltPasArretes'  : (u"Les deux roulements devraient être arrêtés des deux cotés sur l'%(radi)s.", "bleu"),
+                    # Remarques gÃƒÂ©nÃƒÂ©rales
+                    'ManqueRlt'      : (u"A bearing is missing to form a pivot joint!", "red"),
+                    'RltPasMaintenu' : (u"One of the %(cote)s bearing rings is not retained.", "red"),
+                    'RltPasMaintenus': (u"One of the bearing rings is not retained.", "red"),
+                    'RltsImcomp'     : (u"Incompatible bearings.", "red"),
+                    'OrientIncorr'   : (u"The orientation of the angular contact bearings is incorrect.", "red"),
+                    'RltPasArrete'   : (u"The %(cote)s bearing should be retained on both sides on the %(radi)s.", "blue"),
+                    'RltPasArretes'  : (u"Both bearings should be retained on both sides on the %(radi)s.", "blue"),
 
                     # Immobilisation axiale du montage
-                    'ArretArbreSens' : (u"L'arbre n'est pas arrêté axialement vers la %(sens)s" , "rouge"),
-                    'Hyperstatique'  : (u"hyperstatique." , "bleu"),
-                    'ImmobCorrect'   : (u"L'arbre est arrêté axialement." , "vert"),
-                    'ArbreArrete'    : (u"L'arbre est correctement arrêté axialement." , "vert"),
-                    'ArbrePasArrete' : (u"L'arbre n'est pas correctement arrêté axialement." , "rouge"),
+                    'ArretArbreSens' : (u"The shaft is not axially retained toward the %(sens)s" , "red"),
+                    'Hyperstatique'  : (u"hyperstatic." , "blue"),
+                    'ImmobCorrect'   : (u"The shaft is axially retained." , "green"),
+                    'ArbreArrete'    : (u"The shaft is correctly axially retained." , "green"),
+                    'ArbrePasArrete' : (u"The shaft is not correctly axially retained." , "red"),
 
-                    # Résistance aux charges
+                    # RÃƒÂ©sistance aux charges
                         # axial
-                    'ChargeAxOk'     : (u"Le montage résiste à la charge axiale." , "vert"),
-                    'ChargeAxNo'     : (u"Le montage ne résiste pas à la charge axiale." , "rouge"),
-                    'ElemResistPas'  : (u"Les éléments suivants ne résistent pas :", "rouge"),
+                    'ChargeAxOk'     : (u"The assembly withstands the axial load." , "green"),
+                    'ChargeAxNo'     : (u"The assembly does not withstand the axial load." , "red"),
+                    'ElemResistPas'  : (u"The following elements do not withstand the load:", "red"),
                         # roult
-                    'RltSupportePas' : (u"ne supporte pas" , "rouge"),
-                    'RltSupporte'    : (u"supporte" , "vert"),
-                    'TRltSupportePas' : (u"Aucun roulement ne supporte la charge." , "rouge"),
-                    '1RltSupportePas' : (u"Le roulement %(cote)s ne supporte pas la charge." , "rouge"),
-                    'TRltSupporte'    : (u"Tous les roulements supportent la charge." , "vert"),
+                    'RltSupportePas' : (u"does not withstand" , "red"),
+                    'RltSupporte'    : (u"withstands" , "green"),
+                    'TRltSupportePas' : (u"No bearing withstands the load." , "red"),
+                    '1RltSupportePas' : (u"The %(cote)s bearing does not withstand the load." , "red"),
+                    'TRltSupporte'    : (u"All bearings withstand the load." , "green"),
 
                         # 
-                    'ChargeRadOk'    : (u"Résiste à la charge radiale.", "vert"),
-                    'EffortRadial'   : (u"Ne résiste pas à la charge radiale.", "rouge"),
+                    'ChargeRadOk'    : (u"Withstands the radial load.", "green"),
+                    'EffortRadial'   : (u"Does not withstand the radial load.", "red"),
 
-                    # Montabilité
-                    'MontImposs'     : (u"Le Montage/Démontage de certains éléments est impossible !" , "rouge"),
-                    'Possible'       : (u"possible" , "vert"),
-                    'Impossible'     : (u"impossible" , "rouge"),
-                    'Collision'      : (u"Collision entre les éléments suivants :", "rouge"),
-                    'ElemNonDem'     : (u"L'élément %s n'est pas montable/démontable.", "rouge"),
-                    'RltGonfl'       : (u"Le roulement %(cote)s ne peut pas être monté sur l'%(radi)s !", "rouge"),
-                    'MontPoss'       : (u"Le Montage/Démontage des éléments est possible." , "vert"),
-                    'MontImpossRlt'  : (u"Le roulement %(cote)s ne peut pas être monté sur l'%(radi)s !", "rouge"),
-                    'CollisionRlt'   : (u"Collision avec les éléments suivants :" , "rouge"),
-                    'BagueIsolee'    : (u"Le roulement suivant\nn'est pas montable sur son logement sérré.", "rouge"),
-                    'BagueIsolees'   : (u"Les roulements suivants\nne sont pas montables sur leur logement sérré.", "rouge"),
+                    # MontabilitÃƒÂ©
+                    'MontImposs'     : (u"Some components cannot be assembled or disassembled!" , "red"),
+                    'Possible'       : (u"possible" , "green"),
+                    'Impossible'     : (u"impossible" , "red"),
+                    'Collision'      : (u"Collision between the following elements:", "red"),
+                    'ElemNonDem'     : (u"Element %s cannot be assembled/disassembled.", "red"),
+                    'RltGonfl'       : (u"The %(cote)s bearing cannot be mounted on the %(radi)s!", "red"),
+                    'MontPoss'       : (u"The components can be assembled/disassembled." , "green"),
+                    'MontImpossRlt'  : (u"The %(cote)s bearing cannot be mounted on the %(radi)s!", "red"),
+                    'CollisionRlt'   : (u"Collision with the following elements:" , "red"),
+                    'BagueIsolee'    : (u"The following bearing cannot be assembled on its tight housing.", "red"),
+                    'BagueIsolees'   : (u"The following bearings cannot be assembled on their tight housing.", "red"),
 
-                    # Entachéité
-                    'EtanchStat'      : (u"L'étanchéité statique est assurée." , "vert"),
-                    'PasEtanchStat'   : (u"L'étanchéité statique n'est pas assurée !" , "rouge"),
-                    'EtanchDyn'       : (u"L'étanchéité dynamique est assurée." , "vert"),
-                    'PasEtanchDyn'    : (u"L'étanchéité dynamique n'est pas assurée !" , "rouge"),
-                    'IncompLubHuil'   : (u"La lubrification à l'huile est impossible avec les chicanes !" , "rouge"),
-                    'IncompLubChic'   : (u"Les chicanes sont incompatibles avec la pression souhaitée !" , "rouge"),
-                    'ManqueJoint'     : (u"Il manque un dispositif d'étanchéité du coté %(cote)s.", "rouge"),
-                    'VitesseTrop'     : (u"La vitesse est trop élevée pour le joint du coté %(cote)s.", "rouge"),
-                    'FactPVTrop'      : (u"Le facteur PV est trop élevé pour le joint du coté %(cote)s.", "rouge"),
-                    'VittPVTrop'      : (u"La vitesse et le facteur PV sont trop élevés pour certains joints.", "rouge"),
-                    'PressTrop'       : (u"La pression est trop élevée pour le joint du coté %(cote)s.", "rouge"),
-                    
-                    'LubrifComp'      : (u"Les joints sont compatibles avec la lubrification choisie.", "vert"),
-                    'LubrifPasComp'   : (u"Les chicanes ne sont pas compatibles avec une lubrification à l'huile.", "rouge")
+                    # Sealing
+                    'EtanchStat'      : (u"Static sealing is ensured." , "green"),
+                    'PasEtanchStat'   : (u"Static sealing is not ensured!" , "red"),
+                    'EtanchDyn'       : (u"Dynamic sealing is ensured." , "green"),
+                    'PasEtanchDyn'    : (u"Dynamic sealing is not ensured!" , "red"),
+                    'IncompLubHuil'   : (u"Oil lubrication is impossible with the labyrinth seals!" , "red"),
+                    'IncompLubChic'   : (u"The labyrinth seals are incompatible with the desired pressure!" , "red"),
+                    'ManqueJoint'     : (u"A sealing device is missing on the %(cote)s side.", "red"),
+                    'VitesseTrop'     : (u"The speed is too high for the %(cote)s seal.", "red"),
+                    'FactPVTrop'      : (u"The PV factor is too high for the %(cote)s seal.", "red"),
+                    'VittPVTrop'      : (u"The speed and PV factor are too high for some seals.", "red"),
+                    'PressTrop'       : (u"The pressure is too high for the %(cote)s seal.", "red"),
+
+                    'LubrifComp'      : (u"The seals are compatible with the selected lubrication.", "green"),
+                    'LubrifPasComp'   : (u"The labyrinth seals are not compatible with oil lubrication.", "red")
                     }
 
 #########################################################################################
@@ -217,14 +217,14 @@ def afficherAide(options, clef):
 #     Zone de message     #
 ##############################################################################
 
-#messages = {'SelectElem' : u"Selectionner un élément à placer sur le montage",
-#            'FaireGliss' : u"Faire glisser l'élément sur le montage",
-#            'MenuContex' : u"Bouton droit de la souris pour modifier l'élément",
-#            'PlacerElem' : u"Cliquer pour placer l'élément sur le montage",
+#messages = {'SelectElem' : u"Selectionner un ÃƒÂ©lÃƒÂ©ment ÃƒÂ  placer sur le montage",
+#            'FaireGliss' : u"Faire glisser l'ÃƒÂ©lÃƒÂ©ment sur le montage",
+#            'MenuContex' : u"Bouton droit de la souris pour modifier l'ÃƒÂ©lÃƒÂ©ment",
+#            'PlacerElem' : u"Cliquer pour placer l'ÃƒÂ©lÃƒÂ©ment sur le montage",
 #            'ModifCdCF'  : u"Modification du CdCF"}
 #
 #class ZoneMessage(Frame):
-#    "classe définissant la zone de message"
+#    "classe dÃƒÂ©finissant la zone de message"
 #    def __init__(self, master):
 #        Frame.__init__(self, bd = 2, relief = FLAT,
 #                       width = 400, height = 30, padx = 3, pady = 3)
@@ -253,40 +253,40 @@ def afficherAide(options, clef):
 #     Info bulle     #
 ##############################################################################
 bulles = {'vide'    : u"",
-          'Ouvrir'  : u"Ouvrir un montage depuis un fichier",
-          'Enregi'  : u"Enregistrer le montage dans un fichier",
-          'ModCdcf' : u"Modifier le CdCF",
-          'Analyse' : u"Analyser le montage",
-          'Reinit'  : u"Réinitialiser le montage\nTous les éléments sont supprimés !",
-          'CdCFCurs'    : u"Faire glisser le curseur\npour modifier la faleur de l'indice",
-          'CdCFAide'    : u"Affiche l'aide relative au CdCF",
-          'CdCFCharg'   : u"Répartition et indices des charges\nappliquées sur l'arbre",
-          'CdCFBague'   : u"Désigne la bague qui tourne\npar rapport à la charge radiale\nappliquée sur l'arbre",
-          'CdCF'        : u"Cahier des Charges Fonctionnel",
-          'CdCFCout'    : u"Indice de Coût maximum du montage",
-          'CdCFPress'   : u"Indice de Pression Relative dans la liaison",
-          'CdCFVitt'    : u"Indice de Vitesse Angulaire de la liaison",
-          'AnalyAnim'   : u"Effectue une animation illustrant le manque d'arrêts",
-          'AnalyChai'   : u"Trace la chaîne d'action de l'effort axial",
-          'SelectRoul'  : u"Selectionner les éléments ne résistant pas à la charge axiale",
-          'AnalyHypr'   : u"La chaîne d'action est double ...",
-          'EnsPasDemont': u"Démonter l'ensemble pour pouvoir\n",
-          'Dem'         : u"Démonter",
-          'Rem'         : u"Remonter",
-          'Ens'         : u"l'ensemble",
-          'Rlt'         : u"le roulement",
-          'G'           : u"gauche",
-          'D'           : u"droit",
-          'Al'          : u"arbre",
-          'Ar'          : u"alésage",
-          'vers'        : u"vers la",
-          'depuis'      : u"depuis la",
-          'sens0'       : u"droite.",
-          'sens1'       : u"gauche.",
-          'AnalyMtgEns': u"Effectue une animation de l'opération\nde démontage/montage de l'ensemble\nvers/depuis la droite",
-          'AnalyMtgEns1': u"Effectue une animation de l'opération\nde démontage/montage de l'ensemble\nvers/depuis la gauche",
-          'AnalyMtgRlt' : u"Effectue une animation de l'opération\nde démontage/montage du roulement %s\nvers/depuis la %s",
-          'AnalyMtgObs' : u"Met en évidence les différents obstacles au démontage"
+          'Ouvrir'  : u"Open an assembly from a file",
+          'Enregi'  : u"Save the assembly to a file",
+          'ModCdcf' : u"Edit the functional specification",
+          'Analyse' : u"Analyze the assembly",
+          'Reinit'  : u"Reset the assembly\nAll elements will be removed!",
+          'CdCFCurs'    : u"Drag the slider\nto change the index value",
+          'CdCFAide'    : u"Show the CdCF help",
+          'CdCFCharg'   : u"Distribution and indices of the loads\napplied to the shaft",
+          'CdCFBague'   : u"Specifies which ring rotates\nrelative to the radial load\napplied to the shaft",
+          'CdCF'        : u"Functional specification",
+          'CdCFCout'    : u"Maximum cost index of the assembly",
+          'CdCFPress'   : u"Relative pressure index in the joint",
+          'CdCFVitt'    : u"Angular speed index of the joint",
+          'AnalyAnim'   : u"Play an animation illustrating missing stops",
+          'AnalyChai'   : u"Draw the action chain of the axial load",
+          'SelectRoul'  : u"Highlight elements that do not resist the axial load",
+          'AnalyHypr'   : u"The action chain is doubled...",
+          'EnsPasDemont': u"Disassemble the assembly to be able to\n",
+          'Dem'         : u"Disassemble",
+          'Rem'         : u"Reassemble",
+          'Ens'         : u"the assembly",
+          'Rlt'         : u"the bearing",
+          'G'           : u"left",
+          'D'           : u"right",
+          'Al'          : u"shaft",
+          'Ar'          : u"bore",
+          'vers'        : u"toward the",
+          'depuis'      : u"from the",
+          'sens0'       : u"right.",
+          'sens1'       : u"left.",
+          'AnalyMtgEns': u"Play an animation of the disassembly/assembly\nof the assembly toward/from the right",
+          'AnalyMtgEns1': u"Play an animation of the disassembly/assembly\nof the assembly toward/from the left",
+          'AnalyMtgRlt' : u"Play an animation of the disassembly/assembly\nof bearing %s toward/from the %s",
+          'AnalyMtgObs' : u"Highlight the different obstacles to disassembly"
           }
 
 
@@ -367,7 +367,7 @@ class InfoBulleDetails:
 
 #################################################################################        
 class InfoBulleElem:
-    """ Classe définissant l'info-bulle pour un élément """
+    """Tooltip helper describing an element in the catalogue."""
     
     def __init__(self, zone, numElem, taille = ["P","G"]):
         bulle = InfoBulle(zone)
@@ -385,9 +385,9 @@ class InfoBulleElem:
         c = 1
         for t in taille:
             if t == "P":
-                tx = u"petit"
+                tx = u"small"
             else:
-                tx = u"grand"
+                tx = u"large"
             Label(bulle, text = tx,
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E) \
@@ -395,20 +395,20 @@ class InfoBulleElem:
             c += 1
             
         if listeElements[numElem]['type'] == "R":
-            Label(bulle, text = u"Indices de charge admissible :",
+            Label(bulle, text = u"Allowable load indices:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E,
                   font = Font_MessBulleG[0]) \
                 .grid(row = 1, column = 0, sticky = E)
-            Label(bulle, text = u"axiale :",
+            Label(bulle, text = u"axial:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E) \
                 .grid(row = 2, column = 0, sticky = E)
-            Label(bulle, text = u"radiale :",
+            Label(bulle, text = u"radial:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E) \
                 .grid(row = 3, column = 0, sticky = E)
-            Label(bulle, text = u"combinée :",
+            Label(bulle, text = u"combined:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E) \
                 .grid(row = 4, column = 0, sticky = E)
@@ -429,7 +429,7 @@ class InfoBulleElem:
                 c = 1
                 r += 1
 
-            Label(bulle, text = u"Indice de Coût :",
+            Label(bulle, text = u"Cost index:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E,
                   font = Font_MessBulleG[0]) \
@@ -443,7 +443,7 @@ class InfoBulleElem:
                 c += 1
          
         elif listeElements[numElem]['type'] == "A":
-            Label(bulle, text = u"Indice de charge admissible :",
+            Label(bulle, text = u"Allowable load index:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E,
                   font = Font_MessBulleG[0]) \
@@ -456,7 +456,7 @@ class InfoBulleElem:
                         .grid(row = 2, column = c)
                 c += 1
             
-            Label(bulle, text = u"Indice de Coût :",
+            Label(bulle, text = u"Cost index:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E,
                   font = Font_MessBulleG[0]) \
@@ -470,7 +470,7 @@ class InfoBulleElem:
                 c += 1
 
         elif listeElements[numElem]['type'] == "J":
-            Label(bulle, text = u"Pression admissible :",
+            Label(bulle, text = u"Allowable pressure:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E,
                   font = Font_MessBulleG[0]) \
@@ -485,7 +485,7 @@ class InfoBulleElem:
                 c += 1
                 
             
-            Label(bulle, text = u"Vitesse admissible :",
+            Label(bulle, text = u"Allowable speed:",
                   bg = bulle['bg'],
                   justify = RIGHT, anchor = E,
                   font = Font_MessBulleG[0]) \
@@ -596,7 +596,7 @@ class InfoBulleElem:
 ##        for m in range(len(self.lstClef) + len(self.lstMess)):
 ##            t = Label(self, bg = "lightyellow")
 ##            self.lstLabel.append(t)
-####        print "   ...",len(self.lstLabel)," labels ajoutés"
+####        print "   ...",len(self.lstLabel)," labels ajoutÃƒÂ©s"
 ##        self.majLabel()
 ##        
 ##
@@ -649,7 +649,7 @@ class InfoBulleElem:
 ##
 ####        print "  position avant =",posX,posY
 ##
-##        # Correction pour que ça rentre dans l'écran
+##        # Correction pour que ÃƒÂ§a rentre dans l'ÃƒÂ©cran
 ##        if posX + self.tipwidth > self.winfo_screenwidth():          
 ##            posX = posX - self.tipwidth
 ##        if posY + self.tipheight > self.winfo_screenheight():
@@ -658,7 +658,7 @@ class InfoBulleElem:
 ##            else:
 ##                posY = posY - self.tipheight
 ##
-####        print "  position après =",posX,posY
+####        print "  position aprÃƒÂ¨s =",posX,posY
 ##        #~ print posX,print posY
 ##        self.geometry('+%d+%d'%(posX,posY))
 ##        self.deiconify()
@@ -672,7 +672,7 @@ class InfoBulleElem:
 
 ############################################################################################
 ##class FrameBulleElem(Frame):
-##    """ Classe définissant l'info-bulle pour un élément """
+##    """ Classe dÃƒÂ©finissant l'info-bulle pour un ÃƒÂ©lÃƒÂ©ment """
 ##    
 ##    def __init__(self, master, options):
 ##
@@ -720,7 +720,7 @@ class InfoBulleElem:
 ##                  bg = "lightyellow",
 ##                  justify = RIGHT, anchor = E) \
 ##                .grid(row = 3, column = 0, sticky = E)
-##            Label(self, text = u"combinée :",
+##            Label(self, text = u"combinÃƒÂ©e :",
 ##                  bg = "lightyellow",
 ##                  justify = RIGHT, anchor = E) \
 ##                .grid(row = 4, column = 0, sticky = E)
@@ -741,7 +741,7 @@ class InfoBulleElem:
 ##                c = 1
 ##                r += 1
 ##
-##            Label(self, text = u"Indice de Coût :",
+##            Label(self, text = u"Indice de CoÃƒÂ»t :",
 ##                  bg = "lightyellow",
 ##                  justify = RIGHT, anchor = E,
 ##                  font = Font_MessBulleG[0]) \
@@ -768,7 +768,7 @@ class InfoBulleElem:
 ##                        .grid(row = 2, column = c)
 ##                c += 1
 ##            
-##            Label(self, text = u"Indice de Coût :",
+##            Label(self, text = u"Indice de CoÃƒÂ»t :",
 ##                  bg = "lightyellow",
 ##                  justify = RIGHT, anchor = E,
 ##                  font = Font_MessBulleG[0]) \
@@ -789,20 +789,20 @@ class InfoBulleElem:
 #     Types de charge     #
 ################################################################################
 
-typeCharge = {0 : u"aucune\ncharge",
-              1 : u"charge\npurement axiale",
-              2 : u"charge\npurement axiale",
-              3 : u"charge\npurement axiale",
-              4 : u"charge\npurement radiale",
-              5 : u"charge\ncombinée",
-              6 : u"charge\ncombinée",
-              7 : u"charge\ncombinée"}
+typeCharge = {0 : u"no\nload",
+              1 : u"purely\naxial load",
+              2 : u"purely\naxial load",
+              3 : u"purely\naxial load",
+              4 : u"purely\nradial load",
+              5 : u"combined\nload",
+              6 : u"combined\nload",
+              7 : u"combined\nload"}
 
 
-adaptation = {0 : u"inadapté",
-              1 : u"peu adapté",
-              2 : u"satisfaisant",
-              3 : u"bon",
+adaptation = {0 : u"unsuitable",
+              1 : u"poor",
+              2 : u"adequate",
+              3 : u"good",
               4 : u"excellent"}
 
 
@@ -815,8 +815,8 @@ adaptation = {0 : u"inadapté",
 # Traductions en textes #
 ################################################################################
 
-cote2text = {"G" : "gauche",
-             "D" : "droit"}
+cote2text = {"G" : "left",
+             "D" : "right"}
 
 
 ###################################################################################################
